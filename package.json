@@ -1,11 +1,10 @@
 {
-  "name": "tinkerbell",
-  "version": "1.0.0",
-  "description": "",
+  "name": "pocahontas",
+  "version": "0.0.1",
+  "description": "Simple framework for css",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
-    "watch": "rollup -c -w"
+    
   },
   "author": "Daniel van Zuijdam",
   "license": "ISC",
