@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "description": "Simple framework for css",
   "main": "index.js",
-  "scripts": {
-    
-  },
+  "scripts": {},
   "author": "Daniel van Zuijdam",
   "license": "ISC",
   "dependencies": {
