@@ -8,7 +8,7 @@
     border-radius: math.div($base-border-radius, 4);
 
     .card-title {
-        font-size: $font-size-lg;
+        font-size: map-get($fonts, "lg");
         padding-bottom: $base-padding;
         font-weight: bold;
     }

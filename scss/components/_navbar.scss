@@ -12,7 +12,7 @@
     box-shadow: $base-box-shadow;
 
     .site-title {
-        font-size: $font-size-lg;
+        font-size: map-get($fonts, "lg");
     }
 
     .container {
