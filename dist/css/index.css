@@ -471,20 +471,30 @@ a {
   padding: 0.5rem;
 }
 
-.pn-1 {
+.a-super {
+  vertical-align: super;
+}
+
+.a-bottom {
+  vertical-align: bottom;
+}
+
+.pv-1 {
   padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
-.br {
-  border-radius: 20px;
+.ph-4 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
-.px-3 {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.mv-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.py-4 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+.mh-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }

@@ -26,61 +26,76 @@ $utilities: (
     "values": $spacers
     ),
   "margin-left": (
-    "prefix": "ml",
+    "prefix": "mw",
     "values": $spacers
     ),
   "margin-right": (
-    "prefix": "mr",
+    "prefix": "me",
     "values": $spacers
     ),
   "margin-top": (
-    "prefix": "mt",
+    "prefix": "mn",
     "values": $spacers
     ),
   "margin-bottom": (
-    "prefix": "mb",
+    "prefix": "ms",
     "values": $spacers
     ),
 
   "opacity": (
     "prefix": "o",
     "values": (
-      "10": 0.1,
-      "20": 0.2,
-      "30": 0.3,
-      "40": 0.4,
-      "50": 0.5,
-      "60": 0.6,
-      "70": 0.7,
-      "80": 0.8,
-      "90": 0.9,
-      "100": 1,
+      "1": 0.1,
+      "2": 0.2,
+      "3": 0.3,
+      "4": 0.4,
+      "5": 0.5,
+      "6": 0.6,
+      "7": 0.7,
+      "8": 0.8,
+      "9": 0.9,
+      "10": 1,
     ),
   ),
-  "border-radius": (
-    "prefix": "br",
-    "values": (
-      "default": $base-border-radius,
-      "none": 0,
-      "xs": math.div($base-border-radius, 4),
-      "sm": math.div($base-border-radius, 2),
-      "lg": $base-border-radius * 2,
-      "full": 50%,
-    )
-  ),
+
   "display": (
     "prefix": "d",
     "values": (
-      "none": none,
+      "nattribute-one": nattribute-one,
       "block": block,
       "flex": flex,
       "inline": inline,
       "inline-block": inline-block
     )
   ),
+
   "font-size": (
     "prefix": "font",
     "values": $fonts
+  ),
+
+  "vertical-align": (
+      "prefix": a,
+      "values": (
+        "baseline": baseline, 
+        "sub": sub,
+        "super": super,
+        "top": top, 
+        "text-top": text-top, 
+        "middle": middle,
+        "bottom": bottom,
+        "text-bottom": text-bottom,
+      )
+    ),
+    
+  "float": (
+    responsive: true,
+    property: float,
+    values: (
+      start: left,
+      end: right,
+      nattribute-one: nattribute-one,
+    )
   ),
 );
 
@@ -101,36 +116,52 @@ $utilities: (
     }
 }
 
-$padding-x: (
-  "padding-x": (
-    "values": $spacers
+$diagonals: (
+  "pv": (
+    "values": $spacers,
+    "area": (
+      "attribute-one": "padding-top", 
+      "attribute-two": "padding-bottom"
+    )
+  ),
+  "ph": (
+    "values": $spacers,
+    "area": (
+      "attribute-one": "padding-left", 
+      "attribute-two": "padding-right"
+    )
+  ),
+  "mv": (
+    "values": $spacers,
+    "area": (
+      "attribute-one": "margin-top", 
+      "attribute-two": "margin-bottom"
+    )
+  ),
+  "mh": (
+    "values": $spacers,
+    "area": (
+      "attribute-one": "margin-left", 
+      "attribute-two": "margin-right"
+    )
   )
 );
 
-@each $property, $map in $padding-x {
+@each $property, $map in $diagonals {
   $values: map-get($map, "values");
+  $area: map-get($map, "area");
+  $attribute-one: map-get($area, "attribute-one");
+  $attribute-two: map-get($area, "attribute-two");
+
+  @debug $attribute-one;
+  @debug $attribute-two;
+  @debug $values;
+  @debug $property;
 
   @each $key, $val in $values {
-    .px-#{$key} {
-    padding-left: $val;
-    padding-right: $val;
-    }
-  }
-}
-
-$padding-y: (
-  "padding-y": (
-    "values": $spacers
-  )
-);
-
-@each $property, $map in $padding-y {
-  $values: map-get($map, "values");
-
-  @each $key, $val in $values {
-    .py-#{$key} {
-    padding-top: $val;
-    padding-bottom: $val;
+    .#{$property}-#{$key} {
+      #{$attribute-one}: $val;
+      #{$attribute-two}: $val;
     }
   }
 }
