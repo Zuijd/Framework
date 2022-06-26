@@ -1,43 +1,111 @@
-@mixin btn($bg-color: #e2e2e2) {
-    text-decoration: none;
+@use 'sass:math';
+
+@mixin button {
     cursor: pointer;
     display: inline-block;
-    border: 0;
-    padding: $base-padding $base-padding * 2;
-    border-radius: $base-border-radius;
-    background-color: $bg-color;
+    font-size: $btn-font-size + 6;
+    padding: $btn-padding * 3 $btn-padding * 6;
 }
 
+@mixin btn($bg-color: #e2e2e2) {
+    @include button();
+    border: $btn-border-thickness solid $bg-color;
+    border-radius: $btn-border-radius;
+    background-color: $bg-color;
+    font-weight: bold;
+    color: white;
+}
+
+// btn
 .btn {
     @include btn;
+    color: black;
 }
 
+//btn-link
+.btn-link {
+    @include button();
+    cursor: pointer;
+    border: none;
+    background: none;
+    text-decoration: underline;
+    color: map-get($colors, "blue");
+}
+
+// button colors
 @each $key,
 $val in $colors {
+    // btn-#color
     .btn-#{$key} {
         @include btn($val);
 
         &:hover {
-            background-color: lighten($val, 5);
+            opacity: 0.8;
         }
     }
-
+    // btn-outlined-#color
     .btn-outlined-#{$key} {
-        @include btn(#FFFFFF);
-        border: $base-border-thickness solid $val;
+        @include btn(map-get($colors, "white"));
+        color: $val;
+        border-color: $val;
 
         &:hover {
             background-color: $val;
+            color: white;
         }
     }
+}
 
-    .btn-complement-#{$key} {
-        @include btn($val);
-        color: light-comp($val);
-        &:hover {
-            color: $val;
-            background-color: light-comp($val);
+//btn-size-#(1-10)
+$sizes: (
+    "padding": (
+        "prefix": "btn-size",
+        "values": (
+            "1": $btn-padding * 1 $btn-padding * 1 * 2,
+            "2": $btn-padding * 2 $btn-padding * 2 * 2,
+            "3": $btn-padding * 3 $btn-padding * 3 * 2,
+            "4": $btn-padding * 4 $btn-padding * 4 * 2,
+            "5": $btn-padding * 5 $btn-padding * 5 * 2,
+            "6": $btn-padding * 6 $btn-padding * 6 * 2,
+            "7": $btn-padding * 7 $btn-padding * 7 * 2,
+            "8": $btn-padding * 8 $btn-padding * 8 * 2,
+            "9": $btn-padding * 9 $btn-padding * 9 * 2,
+            "10": $btn-padding * 10 $btn-padding * 10 * 2,
+        ),
+    ),
+
+    "font-size": (
+        "prefix": "btn-size",
+        "values": (
+            "1": $btn-font-size + 0,
+            "2": $btn-font-size + 3,
+            "3": $btn-font-size + 5,
+            "4": $btn-font-size + 9,
+            "5": $btn-font-size + 13,
+            "6": $btn-font-size + 17,
+            "7": $btn-font-size + 21,
+            "8": $btn-font-size + 25,
+            "9": $btn-font-size + 29,
+            "10": $btn-font-size + 33
+        ),
+    ),
+);
+
+@each $property,
+$map in $sizes {
+    $prefix: map-get($map, "prefix");
+    $values: map-get($map, "values");
+
+    @each $key,
+    $val in $values {
+        .#{$prefix}-#{$key} {
+            #{$property}: $val !important;
         }
     }
+}
 
+//disable
+.disable {
+    pointer-events: none;
+    opacity: 0.6;
 }
